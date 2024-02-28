@@ -3,9 +3,9 @@ class Operaciones:
     Clase para realizar operaciones y mostrar resultados.
 
     Attributes:
-    - suma (float): El valor acumulado de la suma.
-    - x (int): El valor de la variable x.
-    - y (int): El valor de la variable y.
+    suma (float): El valor acumulado de la suma.
+    x (int): El valor de la variable x.
+    y (int): El valor de la variable y.
     """
 
     def __init__(self):
