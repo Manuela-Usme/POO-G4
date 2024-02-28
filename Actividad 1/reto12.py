@@ -1,55 +1,60 @@
-class Trabajador:
+class Empleado:
     """
-    Clase para representar y calcular el salario de un trabajador.
-
-    Attributes:
-    - NOM (str): Nombre del trabajador.
-    - NHT (float): Número de horas trabajadas por el trabajador.
-    - VHN (float): Valor de la hora normal de trabajo del trabajador.
+    Clase para representar a un empleado y calcular su salario bruto, retención en la fuente y salario neto.
     """
 
-    def __init__(self):
+    def __init__(self, horas_trabajadas, valor_hora):
         """
-        Inicializa un objeto Trabajador con valores predeterminados.
-        """
-        self.NOM = ""
-        self.NHT = 0
-        self.VHN = 0
-
-    def leer_datos(self):
-        """
-        Solicita al usuario que ingrese los datos del trabajador.
-        """
-        self.NOM = input("Ingrese el nombre del trabajador: ")
-        self.NHT = float(input("Ingrese el número de horas trabajadas: "))
-        self.VHN = float(input("Ingrese el valor de la hora normal de trabajo: "))
-
-    def calcular_salario(self):
-        """
-        Calcula el salario del trabajador según las horas trabajadas y el valor de la hora normal.
+        Inicializa un objeto Empleado con las horas trabajadas y el valor por hora.
         
-        Returns:
-        - float: El salario devengado por el trabajador.
+        Args:
+        - horas_trabajadas (int): Número de horas trabajadas por el empleado.
+        - valor_hora (float): Valor monetario de una hora de trabajo.
         """
-        if self.NHT > 40:
-            HET = self.NHT - 40
-            if HET > 8:
-                HEE8 = HET - 8
-                salario = 40 * self.VHN + 16 * self.VHN + HEE8 * 3 * self.VHN
-            else:
-                salario = 40 * self.VHN + HET * 2 * self.VHN
-        else:
-            salario = self.NHT * self.VHN
+        self.horas_trabajadas = horas_trabajadas
+        self.valor_hora = valor_hora
+        self.salario_bruto = 0
+        self.retencion_fuente = 0
+        self.salario_neto = 0
 
-        return salario
-
-    def mostrar_resultado(self):
+    def calcular_salario_bruto(self):
         """
-        Muestra el resultado del salario devengado por el trabajador.
+        Calcula el salario bruto multiplicando las horas trabajadas por el valor de la hora.
         """
-        salario = self.calcular_salario()
-        print(f"EL TRABAJADOR {self.NOM} DEVENGO: ${salario}")
+        self.salario_bruto = self.horas_trabajadas * self.valor_hora
 
-trabajador = Trabajador()
-trabajador.leer_datos()
-trabajador.mostrar_resultado()
+    def calcular_retencion_fuente(self):
+        """
+        Calcula la retención en la fuente, que corresponde al 12.5% del salario bruto.
+        """
+        self.retencion_fuente = 0.125 * self.salario_bruto 
+
+    def calcular_salario_neto(self):
+        """
+        Calcula el salario neto restando la retención en la fuente al salario bruto.
+        """
+        self.salario_neto = self.salario_bruto - self.retencion_fuente
+
+    def mostrar_resultados(self):
+        """
+        Muestra los resultados del cálculo del salario: salario bruto, retención en la fuente y salario neto.
+        """
+        print("Salario bruto del empleado:", self.salario_bruto)
+        print("Retención en la fuente:", self.retencion_fuente)
+        print("Salario neto del empleado:", self.salario_neto)
+
+
+# Declarar constantes
+horas_trabajadas = 48
+valor_hora = 5000
+
+# Instancia de la clase Empleado
+empleado = Empleado(horas_trabajadas, valor_hora)
+
+# Calcular salario bruto, retención en la fuente y salario neto
+empleado.calcular_salario_bruto()
+empleado.calcular_retencion_fuente()
+empleado.calcular_salario_neto()
+
+# Mostrar resultados
+empleado.mostrar_resultados()
