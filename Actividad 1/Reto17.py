@@ -1,44 +1,46 @@
-class SumaNaturales:
-    """
-    Clase para sumar los primeros N números naturales.
-    """
+import math
 
-    def __init__(self):
+class Circulo:
+    def __init__(self, radio):
         """
-        Constructor de la clase SumaNaturales.
-        Inicializa los atributos N y SUMA.
-        """
-        self.N = 0  # Cantidad de números naturales a sumar
-        self.SUMA = 0  # Suma de los números naturales
+        Constructor de la clase Circulo.
 
-    def leer_numero(self):
+        Parámetros:
+        - radio: float, radio del círculo.
         """
-        Método para leer la cantidad de números naturales a sumar desde la entrada estándar.
-        """
-        self.N = int(input("Ingrese la cantidad de números naturales a sumar: "))
+        self.radio = radio
+        self.area = 0
+        self.longitud_circunferencia = 0
 
-    def sumar_naturales(self):
+    def calcular_area(self):
         """
-        Método para sumar los primeros N números naturales.
-        Imprime los números y la suma parcial en cada iteración.
+        Calcula el área del círculo.
         """
-        self.SUMA = 0
-        self.num = 1
-        print("N        NUM         SUMA")
-        while self.num <= self.N:
-            self.SUMA += self.num
-            print(f"{self.num:2}      --{self.num}--       --{self.SUMA}--")
-            self.num += 1
+        self.area = round(math.pi * (self.radio ** 2), 3)
 
-    def imprimir_suma(self):
+    def calcular_longitud_circunferencia(self):
         """
-        Método para imprimir el resultado de la suma de los números naturales.
+        Calcula la longitud de la circunferencia del círculo.
         """
-        print(f"{' ':>12} {self.num:2}       {self.SUMA:2}")
+        self.longitud_circunferencia = round(2 * math.pi * self.radio, 3)
+
+    def imprimir_resultados(self):
+        """
+        Imprime los resultados del área y la longitud de la circunferencia del círculo.
+        """
+        print(f"El área del círculo es: {self.area}")
+        print(f"La longitud de la circunferencia es: {self.longitud_circunferencia}")
 
 
-if __name__ == "__main__":
-    suma = SumaNaturales()
-    suma.leer_numero()
-    suma.sumar_naturales()
-    suma.imprimir_suma()
+# Solicitar al usuario el radio del círculo
+radio = float(input("Ingrese el radio del círculo: "))
+
+# Crear una instancia de la clase Circulo con el radio proporcionado
+circulo = Circulo(radio)
+
+# Calcular el área y la longitud de la circunferencia del círculo
+circulo.calcular_area()
+circulo.calcular_longitud_circunferencia()
+
+# Imprimir los resultados del área y la longitud de la circunferencia
+circulo.imprimir_resultados()
